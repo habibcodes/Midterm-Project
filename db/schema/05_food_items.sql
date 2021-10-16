@@ -1,6 +1,6 @@
 DROP TABLE IF EXISTS food_items CASCADE;
 
-CREATE food_items (
+CREATE TABLE food_items (
   id SERIAL PRIMARY KEY NOT NULL,
   order_id INTEGER REFERENCES orders(id) ON DELETE CASCADE,
   restaurant_id INTEGER REFERENCES restaurants(id) ON DELETE CASCADE,
@@ -8,5 +8,5 @@ CREATE food_items (
   img VARCHAR(255) NOT NULL,
   type VARCHAR(255) NOT NULL,
   ingredient VARCHAR(255) NOT NULL,
-  price INTEGER NOT NULL
+  price DECIMAL NOT NULL
 );
