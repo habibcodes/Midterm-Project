@@ -1,5 +1,6 @@
 // load .env data into process.env
 require("dotenv").config();
+const cookieSession = require('cookie-session');
 
 // Web server config
 const PORT = process.env.PORT || 8080;
@@ -50,6 +51,25 @@ app.use("/api/widgets", widgetsRoutes(db));
 
 app.get("/", (req, res) => {
   res.render("index");
+});
+
+app.post("/", (req, res) =>{
+  res.redirect("login")
+})
+//login page
+app.get("/login", (req, res) => {
+  res.render("login")
+})
+
+
+//register page
+app.get("/register", (req, res) => {
+  res.render("register")
+})
+
+app.post("/register", (req, res)=> {
+
+  res.redirect("/menu");
 });
 
 app.listen(PORT, () => {
