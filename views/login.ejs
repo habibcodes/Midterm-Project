@@ -5,26 +5,27 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+  <link rel="stylesheet" href="/styles/register.css" type="text/css" />
   <title>Document</title>
 </head>
 <body>
+  <%-include('partials/_header') %>
 
+<form method = "POST" action = "/login">
 
-
-
-
-
-  <form method = "POST" action = "/login">
-
-    <div style = "width:50%;padding:25px"class = "form-group">
-      <h4 style = "text-align: center;">Login Menu</h4>
+    <div class = "form-content">
+      <h4>Login Menu</h4>
   <label class = "form-label"for = "email">Email:</label>
   <input class = "form-control" name = "email" type = "email" placeholder = "johndoe@gmail.com">
 
   <label for = "password">Password:</label>
   <input class = "form-control" name = "password" type = "password">
-
-  <button style = "margin-top:15px;"class = "btn btn-primary"type = "submit">Login</button>
+<div class="buttons-div">
+  <button class = "btn btn-primary"type = "submit">Login</button>
+  <a href = "/register">
+  <button class ="btn btn-primary"type ="button">Register</button>
+  </a>
+  </div>
 </div>
 
   </form>

@@ -61,6 +61,9 @@ app.get("/login", (req, res) => {
   res.render("login")
 })
 
+app.post("/login", (req, res) => {
+  res.redirect("restaurants")
+})
 
 //register page
 app.get("/register", (req, res) => {
@@ -69,8 +72,14 @@ app.get("/register", (req, res) => {
 
 app.post("/register", (req, res)=> {
 
-  res.redirect("/menu");
+  res.redirect("/restaurants");
 });
+
+//restaurants page
+app.get("/restaurants", (req, res) =>{
+  res.render("restaurants")
+})
+
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
