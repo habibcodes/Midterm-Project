@@ -1,0 +1,10 @@
+INSERT INTO restaurants (owner_id, street, city, province, postal_code, country, active) VALUES (1, 'Anything St.', 'Toronto', 'ON', 'MT36P0', 'Canada', true);
+INSERT INTO restaurants (owner_id, street, city, province, postal_code, country, active) VALUES (1, 'This St.', 'Toronto', 'ON', 'RY36P0', 'Canada', true);
+INSERT INTO restaurants (owner_id, street, city, province, postal_code, country, active) VALUES (1, 'That St.', 'Toronto', 'ON', 'MT72P0', 'Canada', true);
+INSERT INTO restaurants (owner_id, street, city, province, postal_code, country, active) VALUES (3, 'The Other St.', 'Toronto', 'ON', 'MX09P0', 'Canada', true);
+INSERT INTO restaurants (owner_id, street, city, province, postal_code, country, active) VALUES (4, 'Not this but that St.', 'Ottawa', 'ON', 'MT3L8D', 'Canada', true);
+INSERT INTO restaurants (owner_id, street, city, province, postal_code, country, active) VALUES (9, 'Capital St.', 'Ottawa', 'ON', 'MT3L8D', 'Canada', true);
+INSERT INTO restaurants (owner_id, street, city, province, postal_code, country, active) VALUES (8, 'Rideu Canal St.', 'Ottawa', 'ON', 'P03L8D', 'Canada', true);
+INSERT INTO restaurants (owner_id, street, city, province, postal_code, country, active) VALUES (7, 'Parliament St.', 'Ottawa', 'ON', 'ST7S8D', 'Canada', true);
+INSERT INTO restaurants (owner_id, street, city, province, postal_code, country, active) VALUES (3, 'Snow St.', 'Ottawa', 'ON', 'T54L8D', 'Canada', true);
+INSERT INTO restaurants (owner_id, street, city, province, postal_code, country, active) VALUES (4, 'No way St.', 'Hamilton', 'ON', 'K3EL8D', 'Canada', true);
