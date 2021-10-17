@@ -2,7 +2,31 @@ h2 {
   margin-top:80px;
   text-align: center;
 }
+body {
+  text-align: center;
+  padding:1em;
+}
+.container {
+  display:flex;
+  flex-direction: column;
 
+
+}
+.restaurant1 {
+  border-radius: 10px;
+  object-fit: cover;
+  height:100px;
+  width:300px;
+}
+
+.restaurant1:hover {
+  border-radius: 30px;
+}
+
+.container div {
+  margin-top:1em;
+  
+}
 
 
 
