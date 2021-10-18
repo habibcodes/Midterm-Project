@@ -7,7 +7,7 @@ const $ = require('jquery');
 
 // Web server config
 const PORT = process.env.PORT || 8080;
-
+const sassMiddleware = require("./lib/sass-middleware");
 const express = require("express");
 const app = express();
 const morgan = require("morgan");
@@ -45,6 +45,7 @@ app.use(
     maxAge: 60 * 60 * 1000
   })
 );
+
 app.use(
   "/styles",
   sassMiddleware({
