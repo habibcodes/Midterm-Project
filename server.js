@@ -110,12 +110,31 @@ app.post("/login", (req, res) => {
 
 //register page
 app.get("/register", (req, res) => {
-  res.render("register")
+  if (req.session.user_id) {
+    res.redirect("/restaurants");
+    return;
+  }
+  res.render("register.ejs")
 })
 
 app.post("/register", (req, res)=> {
+  const name = req.body.name;
+  const email = req.body.email;
+  const password = req.body.password;
+  const phone_number = req.body.phone;
 
-  res.redirect("/restaurants");
+  db.query(
+  `
+  INSERT INTO users (name, email, password, phone_number)
+  VALUES ($1, $2, $3, $4)`, [name, email, bcrypt.hashSync(password, salt), phone_number]).then((result) => {
+    const user = result.rows;
+    console.log(user);
+    req.session.user_id = user.id;
+    res.redirect("/restaurants");
+  })
+  .catch((err) => {
+    console.log(err.message);
+  });
 });
 
 //restaurants page
