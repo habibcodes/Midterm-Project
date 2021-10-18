@@ -91,8 +91,8 @@ app.get("/login", (req, res) => {
     res.redirect("/restaurants");
     return;
   }
-  res.render("login.ejs", {email: undefined})
-})
+  res.render("login.ejs", {email: undefined});
+});
 
 //login page -> if user is exists, then compares information with current db and redirects to main page else error.
 app.post("/login", (req, res) => {
@@ -164,8 +164,8 @@ app.get("/restaurants", (req, res) =>{
   //   const res = result.rows[0];
   //   console.log(res)
   // })
-  res.render("restaurants", { email: req.session.email})
-})
+  res.render("restaurants", { email: req.session.email});
+});
 
 //menu page
 // app.get("/menu", (req, res)=> {
@@ -176,13 +176,13 @@ app.get("/restaurants", (req, res) =>{
 
 app.get("/menu", (req, res)=> {
   db
-  .query('SELECT * FROM food_items ORDER BY price DESC')
-  .then((result) => {
-    const items = result.rows
-    res.render("menu", {items, email: req.session.email})
-  })
-  .catch((err)=>{
-      res.send(err.message)
+    .query('SELECT * FROM food_items ORDER BY price DESC')
+    .then((result) => {
+      const items = result.rows;
+      res.render("menu", {items, email: req.session.email});
+    })
+    .catch((err)=>{
+      res.send(err.message);
 
 
     });
