@@ -5,8 +5,18 @@
 </head>
 <header>
   <nav class = "navbar navbar-light">
-    <a href ="/">appname</a>
-    <a>logo?</a>
+    <div>
+      <% if ( email ) { %>
+        <form action="/logout" method="POST" class="form-inline">
+          <class='nav-item'>
+          <span> Logged in as: <%= email %> </span>
+          <button type="submit" class="btn btn-primary">Logout</button>
+        </form>
+        <% }  else { %>
+          <a href="/login"><button type="submit" class="btn btn-primary">Login</button></a>
+          <a href="/register"><button type="submit" class="btn btn-primary" href="/register">Register</button></a>
+      <% } %>
+    </div>
   </nav>
 
 </header>

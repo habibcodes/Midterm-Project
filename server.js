@@ -89,8 +89,8 @@ app.get("/login", (req, res) => {
     res.redirect("/restaurants");
     return;
   }
-  res.render("login.ejs");
-});
+  res.render("login.ejs", {email: undefined})
+})
 
 //login page -> if user is exists, then compares information with current db and redirects to main page else error.
 app.post("/login", (req, res) => {
@@ -106,6 +106,7 @@ app.post("/login", (req, res) => {
       const user = result.rows[0];
       if (bcrypt.compareSync(password, user.password)) {
         req.session.user_id = user.id;
+        req.session.email = user.email;
         res.redirect("/restaurants");
       }
     } else {
@@ -154,10 +155,20 @@ app.post("/register", (req, res)=> {
 
 //restaurants page
 app.get("/restaurants", (req, res) =>{
-  res.render("restaurants");
-});
+  console.log(req.session.email);
+
+  // db.query(`
+  // SELECT email FROM users WHERE id = ${user}`).then (result => {
+  //   const res = result.rows[0];
+  //   console.log(res)
+  // })
+  res.render("restaurants", { email: req.session.email})
+})
 
 //menu page
+// app.get("/menu", (req, res)=> {
+//   res.render("menu", {email: req.session.email})
+// })
 
 
 
@@ -166,7 +177,7 @@ app.get("/menu", (req, res)=> {
   .query('SELECT * FROM food_items ORDER BY price DESC')
   .then((result) => {
     const items = result.rows
-    res.render("menu", {items})
+    res.render("menu", {items, email: req.session.email})
   })
   .catch((err)=>{
       res.send(err.message)
@@ -176,10 +187,10 @@ app.get("/menu", (req, res)=> {
 
 })
 
-
-app.post("/menu", (req, res) => {
-
-
+//allows users to login and deletes cookie
+app.post("/logout", (req, res) => {
+  req.session = null;
+  res.redirect("/login");
 });
 
 // --------------------------------//
@@ -189,7 +200,7 @@ app.post("/menu", (req, res) => {
 // Twillio SMS trigger
 app.get('/twilio', (req, res) => {
   // call Twilio Send func
-  
+
   setTimeout(() => {
     orderProcessedText();
     orderPlacedText();
@@ -233,7 +244,7 @@ const orderPlacedText = () => {
   client.messages
     .create({
       body: `
-        Hello, *RESTAURANT NAME*! An order has just been placed by *CUSTOMER NAME, TELEPHONE NUMBER, ORDER #* for: *LIST OF ITEMS IN ORDER*. 
+        Hello, *RESTAURANT NAME*! An order has just been placed by *CUSTOMER NAME, TELEPHONE NUMBER, ORDER #* for: *LIST OF ITEMS IN ORDER*.
       `,
       from: '+16474961279', // account num
       // from: '+15005550006', // magic num
@@ -248,7 +259,7 @@ const orderReadyText = () => {
   client.messages
     .create({
       body: `
-        Hello, Bob! Your order is now ready for pickup! Please present *ORDER NUM* to receive your items! Enjoy your meal and thank you for useing *APP NAME*! 
+        Hello, Bob! Your order is now ready for pickup! Please present *ORDER NUM* to receive your items! Enjoy your meal and thank you for useing *APP NAME*!
       `,
       from: '+16474961279', // account num
       // from: '+15005550006', // magic num
