@@ -1,6 +1,7 @@
 // load .env data into process.env
 require("dotenv").config();
 const cookieSession = require('cookie-session');
+const $ = require('jquery')
 
 // Web server config
 const PORT = process.env.PORT || 8080;
@@ -80,7 +81,18 @@ app.get("/restaurants", (req, res) =>{
   res.render("restaurants")
 })
 
+//menu page
+app.get("/menu", (req, res)=> {
+  res.render("menu")
+})
 
+
+app.post("/menu", (req, res) => {
+
+
+
+
+})
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
