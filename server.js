@@ -256,6 +256,9 @@ const orderReadyText = () => {
 };
 
 app.post('/sms', (req, res) => {
+  console.log(req.body); // see what was sent from phone
+  const msgFrom = req.body.From;
+  const msgBody = req.body.Body;
   const twiml = new MessagingResponse();
 
   twiml.message('This is a reply from Twilio POST route.');
