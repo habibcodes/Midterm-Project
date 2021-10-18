@@ -30,6 +30,7 @@ const accountSid = process.env.TWILIO_ACCOUNT_SID;
 const authToken = process.env.TWILIO_AUTH_TOKEN;
 const receiverNumber = process.env.TWILIO_RECEIVER_NUMBER;
 const client = require('twilio')(accountSid, authToken);
+const MessagingResponse = require('twilio').twiml.MessagingResponse;
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -62,6 +63,7 @@ app.use(express.static("public"));
 // Separated Routes for each Resource
 const usersRoutes = require("./routes/users");
 const widgetsRoutes = require("./routes/widgets");
+const twilio = require("twilio");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -163,18 +165,18 @@ app.get("/restaurants", (req, res) =>{
 
 app.get("/menu", (req, res)=> {
   db
-  .query('SELECT * FROM food_items ORDER BY price DESC')
-  .then((result) => {
-    const items = result.rows
-    res.render("menu", {items})
-  })
-  .catch((err)=>{
-      res.send(err.message)
+    .query('SELECT * FROM food_items ORDER BY price DESC')
+    .then((result) => {
+      const items = result.rows;
+      res.render("menu", {items});
+    })
+    .catch((err)=>{
+      res.send(err.message);
 
 
-  })
+    });
 
-})
+});
 
 
 app.post("/menu", (req, res) => {
@@ -183,7 +185,7 @@ app.post("/menu", (req, res) => {
 });
 
 // --------------------------------//
-        // Twilio Section //
+// Twilio Section //
 // --------------------------------//
 
 // Twillio SMS trigger
@@ -192,12 +194,12 @@ app.get('/twilio', (req, res) => {
   
   setTimeout(() => {
     orderProcessedText();
-    orderPlacedText();
+    // orderPlacedText();
   }, 5000);
 
-  setTimeout(() => {
-    orderReadyText();
-  }, 10000);
+  // setTimeout(() => {
+  //   orderReadyText();
+  // }, 10000);
 
 
 
@@ -220,8 +222,6 @@ const orderProcessedText = () => {
         Hello, Bob! You're order for *FROM CHECKOUT* has been placed with *RESTAURANT NAME* for order no.*ORDER NUM FROM DB*. Your estimated delivery time is *SOME NUM*. You will receive a notification once your order is ready for pickup. Send 'ETA' for an update on the remaining time for your order!
       `,
       from: '+16474961279', // account num
-      // from: '+15005550006', // magic num
-      // to: '+12264000462'// sms receiver burner
       to: receiverNumber// real number
     })
     .then(message => console.log(message.sid))
@@ -236,8 +236,6 @@ const orderPlacedText = () => {
         Hello, *RESTAURANT NAME*! An order has just been placed by *CUSTOMER NAME, TELEPHONE NUMBER, ORDER #* for: *LIST OF ITEMS IN ORDER*. 
       `,
       from: '+16474961279', // account num
-      // from: '+15005550006', // magic num
-      // to: '+12264000462'// sms receiver burner
       to: receiverNumber// real number
     })
     .then(message => console.log(message.sid))
@@ -251,13 +249,21 @@ const orderReadyText = () => {
         Hello, Bob! Your order is now ready for pickup! Please present *ORDER NUM* to receive your items! Enjoy your meal and thank you for useing *APP NAME*! 
       `,
       from: '+16474961279', // account num
-      // from: '+15005550006', // magic num
-      // to: '+12264000462'// sms receiver burner
       to: receiverNumber// real number
     })
     .then(message => console.log(message.sid))
     .catch(err => console.log(err));
 };
+
+app.post('/sms', (req, res) => {
+  const twiml = new MessagingResponse();
+
+  twiml.message('This is a reply from Twilio POST route.');
+  
+  res.writeHead(200, {'Content-Type': 'text/xml'});
+  res.end(twiml.toString());
+});
+
 
 
 app.listen(PORT, () => {
