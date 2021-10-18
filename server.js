@@ -1,11 +1,11 @@
 // load .env data into process.env
 require("dotenv").config();
 const cookieSession = require('cookie-session');
-const $ = require('jquery')
+const $ = require('jquery');
 
 // Web server config
 const PORT = process.env.PORT || 8080;
-const sassMiddleware = require("./lib/sass-middleware");
+
 const express = require("express");
 const app = express();
 const morgan = require("morgan");
@@ -16,6 +16,12 @@ const dbParams = require("./lib/db.js");
 const db = new Pool(dbParams);
 db.connect();
 
+// Twilio 
+const accountSid = process.env.TWILIO_ACCOUNT_SID;
+const authToken = process.env.TWILIO_AUTH_TOKEN;
+const receiverNumber = process.env.TWILIO_RECEIVER_NUMBER;
+const client = require('twilio')(accountSid, authToken);
+
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
 //         The :status token will be colored red for server error codes, yellow for client error codes, cyan for redirection codes, and uncolored for all other codes.
@@ -24,14 +30,6 @@ app.use(morgan("dev"));
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));
 
-app.use(
-  "/styles",
-  sassMiddleware({
-    source: __dirname + "/styles",
-    destination: __dirname + "/public/styles",
-    isSass: false, // false => scss, true => sass
-  })
-);
 
 app.use(express.static("public"));
 
@@ -93,6 +91,39 @@ app.post("/menu", (req, res) => {
 
 
 })
+
+// --------------------------------//
+// Twilio Section //
+app.get('/twilio', (req, res) => {
+  // call Twilio Send func
+  sendText();
+
+  res.send(
+    `
+    <div style="text-align:center; padding-top:25%;">
+    <h1> Twilio Send Test </h1>
+    <p> ipsum lorem </p>
+    </div>
+    `
+  );
+});
+
+
+const sendText = () => {
+//
+  client.messages
+    .create({
+      body: 'This is an outgoing twilio sms test.',
+      from: '+16474961279', // account num
+      // from: '+15005550006', // magic num
+      // to: '+12264000462'// sms receiver burner
+      to: receiverNumber// real number
+    })
+    .then(message => console.log(message.sid))
+    .catch(err => console.log(err));
+};
+
+
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
