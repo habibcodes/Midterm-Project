@@ -87,7 +87,7 @@ app.get("/login", (req, res) => {
     res.redirect("/restaurants");
     return;
   }
-  res.render("login.ejs")
+  res.render("login.ejs", {email: undefined})
 })
 
 //login page -> if user is exists, then compares information with current db and redirects to main page else error.
@@ -104,6 +104,7 @@ app.post("/login", (req, res) => {
       const user = result.rows[0];
       if(bcrypt.compareSync(password, user.password)) {
         req.session.user_id = user.id;
+        req.session.email = user.email;
         res.redirect("/restaurants");
       }
     } else {
@@ -152,12 +153,19 @@ app.post("/register", (req, res)=> {
 
 //restaurants page
 app.get("/restaurants", (req, res) =>{
-  res.render("restaurants")
+  console.log(req.session.email);
+
+  // db.query(`
+  // SELECT email FROM users WHERE id = ${user}`).then (result => {
+  //   const res = result.rows[0];
+  //   console.log(res)
+  // })
+  res.render("restaurants", { email: req.session.email})
 })
 
 //menu page
 app.get("/menu", (req, res)=> {
-  res.render("menu")
+  res.render("menu", {email: req.session.email})
 })
 
 
@@ -167,6 +175,12 @@ app.post("/menu", (req, res) => {
 
 
 })
+
+//allows users to login and deletes cookie
+app.post("/logout", (req, res) => {
+  req.session = null;
+  res.redirect("/login");
+});
 
 // --------------------------------//
 // Twilio Section //
