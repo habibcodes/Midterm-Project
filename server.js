@@ -123,7 +123,9 @@ app.post("/register", (req, res)=> {
   const password = req.body.password;
   const phone_number = req.body.phone;
   console.log(req.body)
+  db.query(
 
+  )
   db.query(
     `
     INSERT INTO users (name, email, password, phone_number)
