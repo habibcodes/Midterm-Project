@@ -16,7 +16,7 @@ const dbParams = require("./lib/db.js");
 const db = new Pool(dbParams);
 db.connect();
 
-// Twilio 
+// Twilio
 const accountSid = process.env.TWILIO_ACCOUNT_SID;
 const authToken = process.env.TWILIO_AUTH_TOKEN;
 const receiverNumber = process.env.TWILIO_RECEIVER_NUMBER;
@@ -32,6 +32,7 @@ app.use(express.urlencoded({ extended: true }));
 
 
 app.use(express.static("public"));
+
 
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
@@ -88,8 +89,6 @@ app.get("/menu", (req, res)=> {
   .query('SELECT * FROM food_items ORDER BY price DESC')
   .then((result) => {
     const items = result.rows
-    console.log(items)
-
     res.render("menu", {items})
   })
   .catch((err)=>{
