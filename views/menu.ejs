@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script type="text/javascript" src="/scripts/cart.js" async></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="/styles/menu.css" type="text/css" />
+
   <meta charset="UTF-8">
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,55 +18,50 @@
   </div>
 
   <section class="menu-all">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Picture</th>
+          <th scope="col">Price</th>
+          <th scope="col">Add</th>
+        </tr>
+      </thead>
+
     <tbody class="menu-list">
-    <tr class="menu-list">
-
-      <td>item</td>
-      <td>pic</td>
-      <td>description</td>
-      <td>price</td>
-      <td><form method = "POST" action="/menu"><button class = "btn btn-outline-primary">Add</button></form></td>
+      <% for(let item in items) { %>
+        <tr class="idk">
 
 
-    </tr>
-    <tr id="menu-list"class="menu-list">
+          <td class="food-item"><%= items[item].name %></td>
+          <td class="food-item"><img class="food-img" src="<%= items[item].img %>"></td>
+          <td class="food-item">$<%= items[item].price %></td>
+          <td class="food-item"><button class= "btn btn-primary"type="button">Add to Cart</button></td><br>
 
-      <td>item</td>
-      <td>pic</td>
-      <td>description</td>
-      <td>price</td>
-      <td><form method = "POST" ><button class = "btn btn-outline-primary">Add</button></form></td>
+        </tr>
 
 
-    </tr>
-    <tr class="menu-list">
 
-      <td>item</td>
-      <td>pic</td>
-      <td>description</td>
-      <td>price</td>
-      <td><form method = "POST" ><button class = "btn btn-outline-primary">Add</button></form></td>
+      <% } %>
 
-
-    </tr>
-    <tr class="menu-list">
-
-      <td>item</td>
-      <td>pic</td>
-      <td>description</td>
-      <td>price</td>
-      <td><form method = "POST" ><button class = "btn btn-outline-primary">Add</button></form></td>
-
-
-    </tr>
     </tbody>
-    <div id="cart"class="cart">
-      <h4>Cart</h4>
-      
-    </div>
+  </table>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Picture</th>
+        <th scope="col">Price</th>
+        <th scope="col">Add</th>
+      </tr>
+    </thead>
+    <tbody class="cart"></tbody>
+  </table>
+
     </section>
 
-  </section>
+
 </body>
 
 </html>
