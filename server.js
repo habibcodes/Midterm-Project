@@ -58,6 +58,7 @@ app.use(
 
 app.use(express.static("public"));
 
+
 // Separated Routes for each Resource
 const usersRoutes = require("./routes/users");
 const widgetsRoutes = require("./routes/widgets");
@@ -157,14 +158,26 @@ app.get("/restaurants", (req, res) =>{
 });
 
 //menu page
+
+
+
 app.get("/menu", (req, res)=> {
-  res.render("menu");
-});
+  db
+  .query('SELECT * FROM food_items ORDER BY price DESC')
+  .then((result) => {
+    const items = result.rows
+    res.render("menu", {items})
+  })
+  .catch((err)=>{
+      res.send(err.message)
+
+
+  })
+
+})
 
 
 app.post("/menu", (req, res) => {
-
-
 
 
 });
