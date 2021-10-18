@@ -7,8 +7,9 @@ const client = require('twilio')(accountSid, authToken);
 
 client.messages
   .create({
+    // checkout items go here
     body: 'AlphaBetaDeltaGamma',
-    from: '+6474961279', // our number
-    to: '+6476462240'
+    from: '+6474961279', // our twilio number
+    to: '+XXXXXXXX'
   })
   .then(message => console.log(message.sid));
