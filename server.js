@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 
 
 // load .env data into process.env
@@ -78,8 +79,8 @@ app.get("/", (req, res) => {
 });
 
 app.post("/", (req, res) =>{
-  res.redirect("login")
-})
+  res.redirect("login");
+});
 
 //login page -> if user is already logged in, will be redirected to main page.
 app.get("/login", (req, res) => {
@@ -87,8 +88,8 @@ app.get("/login", (req, res) => {
     res.redirect("/restaurants");
     return;
   }
-  res.render("login.ejs")
-})
+  res.render("login.ejs");
+});
 
 //login page -> if user is exists, then compares information with current db and redirects to main page else error.
 app.post("/login", (req, res) => {
@@ -96,13 +97,13 @@ app.post("/login", (req, res) => {
   const password = req.body.password;
 
   db.query(
-  `
+    `
   SELECT *
   FROM users
   WHERE email = $1;`, [email]).then((result) => {
-    if(result.rows[0]) {
+    if (result.rows[0]) {
       const user = result.rows[0];
-      if(bcrypt.compareSync(password, user.password)) {
+      if (bcrypt.compareSync(password, user.password)) {
         req.session.user_id = user.id;
         res.redirect("/restaurants");
       }
@@ -110,10 +111,10 @@ app.post("/login", (req, res) => {
       res.status(403).send("Email cannot be found or wrong password / email");
     }
   })
-  .catch((err) => {
-    console.log(err.message);
-  });
-})
+    .catch((err) => {
+      console.log(err.message);
+    });
+});
 
 //register page
 app.get("/register", (req, res) => {
@@ -121,30 +122,30 @@ app.get("/register", (req, res) => {
     res.redirect("/restaurants");
     return;
   }
-  res.render("register.ejs")
-})
+  res.render("register.ejs");
+});
 
 app.post("/register", (req, res)=> {
   const name = req.body.name;
   const email = req.body.email;
   const password = req.body.password;
   const phone_number = req.body.phone;
-  console.log(req.body)
+  console.log(req.body);
   db.query(
 
-  )
+  );
   db.query(
     `
     INSERT INTO users (name, email, password, phone_number)
     VALUES ($1, $2, $3, $4)
     RETURNING *`, [name, email, password, phone_number]).then((result) => {
-      const user = result.rows[0];
-      console.log(result)
-      console.log(user);
-      req.session.user_id = user.id;
-      res.redirect("/restaurants");
+    const user = result.rows[0];
+    console.log(result);
+    console.log(user);
+    req.session.user_id = user.id;
+    res.redirect("/restaurants");
 
-    })
+  })
     .catch((err) => {
       console.log(err.message);
     });
@@ -152,13 +153,13 @@ app.post("/register", (req, res)=> {
 
 //restaurants page
 app.get("/restaurants", (req, res) =>{
-  res.render("restaurants")
-})
+  res.render("restaurants");
+});
 
 //menu page
 app.get("/menu", (req, res)=> {
-  res.render("menu")
-})
+  res.render("menu");
+});
 
 
 app.post("/menu", (req, res) => {
@@ -166,13 +167,26 @@ app.post("/menu", (req, res) => {
 
 
 
-})
+});
 
 // --------------------------------//
-// Twilio Section //
+        // Twilio Section //
+// --------------------------------//
+
+// Twillio SMS trigger
 app.get('/twilio', (req, res) => {
   // call Twilio Send func
-  sendText();
+  
+  setTimeout(() => {
+    orderProcessedText();
+    orderPlacedText();
+  }, 5000);
+
+  setTimeout(() => {
+    orderReadyText();
+  }, 10000);
+
+
 
   res.send(
     `
@@ -185,11 +199,44 @@ app.get('/twilio', (req, res) => {
 });
 
 
-const sendText = () => {
-//
+// Outgoing msg to CUSTOMER that order has been processed!
+const orderProcessedText = () => {
   client.messages
     .create({
-      body: 'This is an outgoing twilio sms test.',
+      body: `
+        Hello, Bob! You're order for *FROM CHECKOUT* has been placed with *RESTAURANT NAME* for order no.*ORDER NUM FROM DB*. Your estimated delivery time is *SOME NUM*. You will receive a notification once your order is ready for pickup. Send 'ETA' for an update on the remaining time for your order!
+      `,
+      from: '+16474961279', // account num
+      // from: '+15005550006', // magic num
+      // to: '+12264000462'// sms receiver burner
+      to: receiverNumber// real number
+    })
+    .then(message => console.log(message.sid))
+    .catch(err => console.log(err));
+};
+
+const orderPlacedText = () => {
+// Outgoing msg to RESTAURANT that order has been placed!
+  client.messages
+    .create({
+      body: `
+        Hello, *RESTAURANT NAME*! An order has just been placed by *CUSTOMER NAME, TELEPHONE NUMBER, ORDER #* for: *LIST OF ITEMS IN ORDER*. 
+      `,
+      from: '+16474961279', // account num
+      // from: '+15005550006', // magic num
+      // to: '+12264000462'// sms receiver burner
+      to: receiverNumber// real number
+    })
+    .then(message => console.log(message.sid))
+    .catch(err => console.log(err));
+};
+const orderReadyText = () => {
+// Outgoing msg to customer that order is ready for pickup!
+  client.messages
+    .create({
+      body: `
+        Hello, Bob! Your order is now ready for pickup! Please present *ORDER NUM* to receive your items! Enjoy your meal and thank you for useing *APP NAME*! 
+      `,
       from: '+16474961279', // account num
       // from: '+15005550006', // magic num
       // to: '+12264000462'// sms receiver burner
