@@ -9,7 +9,7 @@ const findUserByEmail = function (email, users) {
 };
 
 const authenticateUser = function(email, password, users) {
-  if(bcrypt.compareSync(password, userFound.password) ) {
+  if(userFound && bcrypt.compareSync(password, userFound.password) ) {
     return userFound;
   }
   return false;
