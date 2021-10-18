@@ -16,55 +16,38 @@
   </div>
 
   <section class="menu-all">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Picture</th>
+          <th scope="col">Price</th>
+          <th scope="col">Add</th>
+        </tr>
+      </thead>
+
     <tbody class="menu-list">
-    <tr class="menu-list">
-
-      <td>item</td>
-      <td>pic</td>
-      <td>description</td>
-      <td>price</td>
-      <td><form method = "POST" action="/menu"><button class = "btn btn-outline-primary">Add</button></form></td>
+      <% for(let item in items) { %>
+        <tr>
 
 
-    </tr>
-    <tr id="menu-list"class="menu-list">
+          <td class="food-item"><%= items[item].name %></td>
+          <td class="food-item"><img class="food-img" src="<%= items[item].img %>"></td>
+          <td class="food-item">$<%= items[item].price %></td>
+          <td class="food-item"><button class= "btn btn-primary"type="button">Add to Cart</button></td><br>
 
-      <td>item</td>
-      <td>pic</td>
-      <td>description</td>
-      <td>price</td>
-      <td><form method = "POST" ><button class = "btn btn-outline-primary">Add</button></form></td>
+        </tr>
 
 
-    </tr>
-    <tr class="menu-list">
 
-      <td>item</td>
-      <td>pic</td>
-      <td>description</td>
-      <td>price</td>
-      <td><form method = "POST" ><button class = "btn btn-outline-primary">Add</button></form></td>
+      <% } %>
 
-
-    </tr>
-    <tr class="menu-list">
-
-      <td>item</td>
-      <td>pic</td>
-      <td>description</td>
-      <td>price</td>
-      <td><form method = "POST" ><button class = "btn btn-outline-primary">Add</button></form></td>
-
-
-    </tr>
     </tbody>
-    <div id="cart"class="cart">
-      <h4>Cart</h4>
-      
-    </div>
+  </table>
+
     </section>
 
-  </section>
+
 </body>
 
 </html>

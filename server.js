@@ -82,14 +82,28 @@ app.get("/restaurants", (req, res) =>{
 })
 
 //menu page
+
+
+
 app.get("/menu", (req, res)=> {
-  res.render("menu")
+  db
+  .query('SELECT * FROM food_items ORDER BY price DESC')
+  .then((result) => {
+    const items = result.rows
+    console.log(items)
+
+    res.render("menu", {items})
+  })
+  .catch((err)=>{
+      res.send(err.message)
+
+
+  })
+
 })
 
 
 app.post("/menu", (req, res) => {
-
-
 
 
 })

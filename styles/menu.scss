@@ -11,22 +11,27 @@
 }
 
 .menu-all{
-  display:flex;
-  flex-direction: column;
+
   padding:2em;
-  justify-content: space-between;
+
 }
-.menu-list{
+.table{
+
+
+
   padding-right:5em;
   border-right:solid;
   border-color:black;
+
 }
-.menu-list tr {
-  padding:1em;
+.food-item{
+  margin-top:5px;
+
+
+
 }
-.cart{
-  margin-top:10px;
-  display:inline-block;
-  padding:1em;
-  box-shadow: 0 4px 16px rgb(0 0 0 / 15%);
+
+.food-img{
+  height:100px;
+  width:100px;
 }
