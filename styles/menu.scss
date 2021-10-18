@@ -1,0 +1,32 @@
+.menu-bg{
+  color:white;
+  margin-top:65px;
+  height:100px;
+  width:100%;
+  text-align: center;
+  padding:2em;
+  background-image: -webkit-radial-gradient(top center, ellipse cover, rgba(255,255,255,0.2) 0%,rgba(0,0,0,0.5) 100%),url(https://www.fairmont.com/assets/0/104/1029/1034/5662/5663/eeb3f718-4d69-477d-8844-8789e1a4a7f8.jpg);
+  background-position: center;
+  background-size: cover;
+}
+
+.menu-all{
+  display:flex;
+  flex-direction: column;
+  padding:2em;
+  justify-content: space-between;
+}
+.menu-list{
+  padding-right:5em;
+  border-right:solid;
+  border-color:black;
+}
+.menu-list tr {
+  padding:1em;
+}
+.cart{
+  margin-top:10px;
+  display:inline-block;
+  padding:1em;
+  box-shadow: 0 4px 16px rgb(0 0 0 / 15%);
+}
