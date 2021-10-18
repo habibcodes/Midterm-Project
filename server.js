@@ -5,7 +5,7 @@ const $ = require('jquery')
 
 // Web server config
 const PORT = process.env.PORT || 8080;
-
+const sassMiddleware = require("./lib/sass-middleware");
 const express = require("express");
 const app = express();
 const morgan = require("morgan");
@@ -24,6 +24,14 @@ app.use(morgan("dev"));
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));
 
+app.use(
+  "/styles",
+  sassMiddleware({
+    source: __dirname + "/styles",
+    destination: __dirname + "/public/styles",
+    isSass: false, // false => scss, true => sass
+  })
+);
 
 app.use(express.static("public"));
 
