@@ -1,4 +1,3 @@
-
 const shoppingCart = (function() {
 
   let cart = [];
@@ -8,11 +7,11 @@ const shoppingCart = (function() {
   // sessions save and load cart
   const saveCart = function() {
     sessionStorage.setItem('shoppingCart', JSON.stringify(cart));
-  }
+  };
 
   const loadCart = function() {
     cart = JSON.parse(sessionStorage.getItem('shoppingCart'));
-  }
+  };
   if (sessionStorage.getItem("shoppingCart") !== null) {
     loadCart();
   }
@@ -21,8 +20,8 @@ const shoppingCart = (function() {
 
   // Add to cart
   obj.addItemToCart = function(name, price, count) {
-    for(const item in cart) {
-      if(cart[item].name === name) {
+    for (const item in cart) {
+      if (cart[item].name === name) {
         cart[item].count ++;
         saveCart();
         return;
@@ -31,10 +30,10 @@ const shoppingCart = (function() {
     const item = {name, price, count};
     cart.push(item);
     saveCart();
-  }
+  };
   // Set count from item
   obj.setCountForItem = function(name, count) {
-    for(let i in cart) {
+    for (let i in cart) {
       if (cart[i].name === name) {
         cart[i].count = count;
         break;
@@ -43,68 +42,68 @@ const shoppingCart = (function() {
   };
   // Remove item from cart
   obj.removeItemFromCart = function(name) {
-      for(let item in cart) {
-        if(cart[item].name === name) {
-          cart[item].count --;
-          if(cart[item].count === 0) {
-            cart.splice(item, 1);
-          }
-          break;
+    for (let item in cart) {
+      if (cart[item].name === name) {
+        cart[item].count --;
+        if (cart[item].count === 0) {
+          cart.splice(item, 1);
         }
+        break;
+      }
     }
     saveCart();
-  }
+  };
 
   // Remove all items from cart
   obj.removeItemFromCartAll = function(name) {
-    for(let item in cart) {
-      if(cart[item].name === name) {
+    for (let item in cart) {
+      if (cart[item].name === name) {
         cart.splice(item, 1);
         break;
       }
     }
     saveCart();
-  }
+  };
 
   // Clear cart
   obj.clearCart = function() {
     cart = [];
     saveCart();
-  }
+  };
 
   // Count cart
   obj.totalCount = function() {
     let totalCount = 0;
-    for(let item in cart) {
+    for (let item in cart) {
       totalCount += cart[item].count;
     }
     return totalCount;
-  }
+  };
 
   // Total cart
   obj.totalCart = function() {
     let totalCart = 0;
-    for(let item in cart) {
+    for (let item in cart) {
       totalCart += cart[item].price * cart[item].count;
     }
     return Number(totalCart.toFixed(2));
-  }
+  };
 
   // List cart
   obj.listCart = function() {
     const cartCopy = [];
-    for(let i in cart) {
+    for (let i in cart) {
       let item = cart[i];
       itemCopy = {};
-      for(p in item) {
+      for (p in item) {
         itemCopy[p] = item[p];
 
       }
       itemCopy.total = Number(item.price * item.count).toFixed(2);
-      cartCopy.push(itemCopy)
+      cartCopy.push(itemCopy);
     }
     return cartCopy;
-  }
+  };
   return obj;
 })();
 
@@ -128,7 +127,7 @@ $('.clear-cart').click(function() {
 function displayCart() {
   const cartArray = shoppingCart.listCart();
   let output = "";
-  for(let item in cartArray) {
+  for (let item in cartArray) {
     output += `<tr>
       <td> ${cartArray[item].name} </td>
       <td> ${cartArray[item].price} </td>
@@ -136,7 +135,7 @@ function displayCart() {
       =
       <td>  ${cartArray[item].total} </td>
        </tr>
-  `}
+  `;}
   $('.show-cart').html(output);
   $('.total-cart').html(shoppingCart.totalCart());
   $('.total-count').html(shoppingCart.totalCount());
@@ -144,8 +143,8 @@ function displayCart() {
 
 // Item count input
 $('.show-cart').on("change", ".item-count", function(event) {
-   const name = $(this).data('name');
-   const count = Number($(this).val());
+  const name = $(this).data('name');
+  const count = Number($(this).val());
   shoppingCart.setCountForItem(name, count);
   displayCart();
 });
