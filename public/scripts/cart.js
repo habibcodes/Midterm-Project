@@ -1,7 +1,7 @@
 
 const shoppingCart = (function() {
 
-  cart = [];
+  let cart = [];
 
 
 
