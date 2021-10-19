@@ -1,4 +1,4 @@
-INSERT INTO users (name, email, password, phone_number) VALUES ('Alice','alice@gmail.com', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.', 5142131231);
+INSERT INTO users (name, email, password, phone_number) VALUES ('Bob','bob@gmail.com', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.', 5142131231);
 INSERT INTO users (name, email, password, phone_number) VALUES ('Peter Griffin','pg@gmail.com', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.', 5142131345);
 INSERT INTO users (name, email, password, phone_number) VALUES ('Venom','v@gmail.com', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.', 5142131654);
 INSERT INTO users (name, email, password, phone_number) VALUES ('Minion','minion@gmail.com', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.', 5145431231);

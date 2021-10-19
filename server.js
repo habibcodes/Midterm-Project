@@ -78,7 +78,11 @@ app.use("/api/widgets", widgetsRoutes(db));
 //
 
 app.get("/", (req, res) => {
-  res.render("index");
+  if (req.session.user_id) {
+    res.redirect("/restaurants");
+    return;
+  }
+  res.render("index.ejs", {email: undefined});
 });
 
 //button on main page redirect to login
@@ -135,9 +139,7 @@ app.post("/register", (req, res)=> {
   const password = req.body.password;
   const phone_number = req.body.phone;
   console.log(req.body);
-  db.query(
 
-  );
   db.query(
     `
     INSERT INTO users (name, email, password, phone_number)
