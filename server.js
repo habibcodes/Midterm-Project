@@ -81,6 +81,7 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
+//button on main page redirect to login
 app.post("/", (req, res) =>{
   res.redirect("login");
 });
@@ -108,7 +109,6 @@ app.post("/login", (req, res) => {
       const user = result.rows[0];
       if (bcrypt.compareSync(password, user.password)) {
         req.session.user_id = user.id;
-        req.session.email = user.email;
         res.redirect("/restaurants");
       }
     } else {
@@ -168,9 +168,6 @@ app.get("/restaurants", (req, res) =>{
 });
 
 //menu page
-// app.get("/menu", (req, res)=> {
-//   res.render("menu", {email: req.session.email})
-// })
 
 
 
@@ -189,10 +186,10 @@ app.get("/menu", (req, res)=> {
 
 });
 
-//allows users to login and deletes cookie
-app.post("/logout", (req, res) => {
-  req.session = null;
-  res.redirect("/login");
+
+app.post("/menu", (req, res) => {
+
+
 });
 
 // --------------------------------//
