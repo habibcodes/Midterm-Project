@@ -76,7 +76,11 @@ app.use("/api/widgets", widgetsRoutes(db));
 //
 
 app.get("/", (req, res) => {
-  res.render("index");
+  if (req.session.user_id) {
+    res.redirect("/restaurants");
+    return;
+  }
+  res.render("index.ejs", {email: undefined});
 });
 
 app.post("/", (req, res) =>{
@@ -133,9 +137,7 @@ app.post("/register", (req, res)=> {
   const password = req.body.password;
   const phone_number = req.body.phone;
   console.log(req.body);
-  db.query(
 
-  );
   db.query(
     `
     INSERT INTO users (name, email, password, phone_number)
@@ -156,19 +158,8 @@ app.post("/register", (req, res)=> {
 //restaurants page
 app.get("/restaurants", (req, res) =>{
   console.log(req.session.email);
-
-  // db.query(`
-  // SELECT email FROM users WHERE id = ${user}`).then (result => {
-  //   const res = result.rows[0];
-  //   console.log(res)
-  // })
   res.render("restaurants", { email: req.session.email})
 })
-
-//menu page
-// app.get("/menu", (req, res)=> {
-//   res.render("menu", {email: req.session.email})
-// })
 
 
 
