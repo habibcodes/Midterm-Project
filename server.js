@@ -270,12 +270,23 @@ app.post('/sms', (req, res) => {
   console.log(req.body); // see what was sent from phone
   const msgFrom = req.body.From;
   const msgBody = req.body.Body;
-  const twiml = new MessagingResponse();
 
-  twiml.message('This is a reply from Twilio POST route.');
+  res.send(
+    `
+      <Response>
+        <Message>
+          Hello ${msgFrom}. You said: ${msgBody}
+        </Message>
+      </Response
+    `
+  );
+
+  // const twiml = new MessagingResponse();
+
+  // twiml.message('This is a reply from Twilio POST route.');
   
-  res.writeHead(200, {'Content-Type': 'text/xml'});
-  res.end(twiml.toString());
+  // res.writeHead(200, {'Content-Type': 'text/xml'});
+  // res.end(twiml.toString());
 });
 
 
