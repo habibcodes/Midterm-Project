@@ -1,37 +1,43 @@
-.menu-bg{
-  color:white;
-  margin-top:65px;
-  height:100px;
-  width:100%;
-  text-align: center;
-  padding:2em;
-  background-image: -webkit-radial-gradient(top center, ellipse cover, rgba(255,255,255,0.2) 0%,rgba(0,0,0,0.5) 100%),url(https://www.fairmont.com/assets/0/104/1029/1034/5662/5663/eeb3f718-4d69-477d-8844-8789e1a4a7f8.jpg);
-  background-position: center;
-  background-size: cover;
+.navbar {
+
+  background-color:rgba(0, 0, 0, 0.575) 0.7 !important;
+  position:fixed !important;
+  bottom:0;
+  width:300px;
+  z-index:1;
 }
 
-.menu-all{
 
-  padding:2em;
+body {
 
+  margin-top: 75px !important;
+  margin-bottom:150px !important;
 }
-.table{
 
-
-
-  padding-right:5em;
-  border-right:solid;
-  border-color:black;
-
+.show-cart li {
+  display: flex;
 }
-.food-item{
-  margin-top:5px;
 
-
+.card-img-top {
+  width: 100px;
+  height: 100px;
+  border-radius: 50% !important;
 
 }
 
-.food-img{
-  height:100px;
-  width:100px;
+table td {
+  padding: 1em;
+
+
 }
+
+.container {
+
+  box-shadow: 0 4px 16px rgb(0 0 0 / 15%);
+  padding:1em;
+  border-radius:15px;
+}
+
+
+
+
