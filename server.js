@@ -111,6 +111,7 @@ app.post("/login", (req, res) => {
       const user = result.rows[0];
       if (bcrypt.compareSync(password, user.password)) {
         req.session.user_id = user.id;
+        req.session.email = user.email;
         res.redirect("/restaurants");
       }
     } else {
@@ -158,9 +159,8 @@ app.post("/register", (req, res)=> {
 //restaurants page
 app.get("/restaurants", (req, res) =>{
   console.log(req.session.email);
-  res.render("restaurants", { email: req.session.email})
+  res.render("restaurants.ejs", { email: req.session.email })
 })
-
 
 
 app.get("/menu", (req, res)=> {
@@ -168,16 +168,18 @@ app.get("/menu", (req, res)=> {
   .query('SELECT * FROM food_items ORDER BY price DESC')
   .then((result) => {
     const items = result.rows
-    res.render("menu", {items})
+    res.render("menu.ejs", { items, email: req.session.email})
   })
   .catch((err)=>{
       res.send(err.message)
-
-
   })
-
 })
 
+//allows users to login and deletes cookie
+app.post("/logout", (req, res) => {
+  req.session = null;
+  res.redirect("/login");
+});
 
 app.post("/menu", (req, res) => {
 
