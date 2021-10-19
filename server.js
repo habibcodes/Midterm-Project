@@ -83,6 +83,7 @@ app.get("/", (req, res) => {
   res.render("index.ejs", {email: undefined});
 });
 
+//button on main page redirect to login
 app.post("/", (req, res) =>{
   res.redirect("login");
 });
@@ -93,8 +94,8 @@ app.get("/login", (req, res) => {
     res.redirect("/restaurants");
     return;
   }
-  res.render("login.ejs", {email: undefined})
-})
+  res.render("login.ejs");
+});
 
 //login page -> if user is exists, then compares information with current db and redirects to main page else error.
 app.post("/login", (req, res) => {
@@ -110,7 +111,6 @@ app.post("/login", (req, res) => {
       const user = result.rows[0];
       if (bcrypt.compareSync(password, user.password)) {
         req.session.user_id = user.id;
-        req.session.email = user.email;
         res.redirect("/restaurants");
       }
     } else {
@@ -168,7 +168,7 @@ app.get("/menu", (req, res)=> {
   .query('SELECT * FROM food_items ORDER BY price DESC')
   .then((result) => {
     const items = result.rows
-    res.render("menu", {items, email: req.session.email})
+    res.render("menu", {items})
   })
   .catch((err)=>{
       res.send(err.message)
@@ -178,10 +178,10 @@ app.get("/menu", (req, res)=> {
 
 })
 
-//allows users to login and deletes cookie
-app.post("/logout", (req, res) => {
-  req.session = null;
-  res.redirect("/login");
+
+app.post("/menu", (req, res) => {
+
+
 });
 
 // --------------------------------//
