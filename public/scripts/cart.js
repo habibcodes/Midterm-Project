@@ -1,8 +1,11 @@
 
+
+jQuery(document).ready(function() {
+
 const shoppingCart = (function() {
 
   let cart = [];
-
+ 
 
 
   // sessions save and load cart
@@ -142,6 +145,7 @@ function displayCart() {
   $('.total-count').html(shoppingCart.totalCount());
 }
 
+
 // Item count input
 $('.show-cart').on("change", ".item-count", function(event) {
    const name = $(this).data('name');
@@ -152,3 +156,4 @@ $('.show-cart').on("change", ".item-count", function(event) {
 
 displayCart();
 
+});

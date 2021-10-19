@@ -12,3 +12,7 @@ INSERT INTO food_items
  (9, 1, 'Summer Pudding', 'https://www.themealdb.com/images/media/meals/rsqwus1511640214.jpg', 'dessert', 'strawberries, blackberries, redcurrants, raspberries', 4.99),
  (10, 1, 'Mineral Water', 'https://fitcasually.com/wp-content/uploads/2019/03/evian_pack24x330mL_new_bottle_c_img60.jpg', 'beverage', 'water', 4)
 ;
+
+UPDATE food_items
+SET img = 'https://static01.nyt.com/images/2018/07/25/dining/HK-karaage-horizontal/merlin_141075300_74569dec-9fc2-4174-931d-019dddef3bb8-articleLarge.jpg'
+WHERE order_id = 5;

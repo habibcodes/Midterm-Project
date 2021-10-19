@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script type="text/javascript" src="/scripts/cart.js" async></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script type="text/javascript" src="/scripts/cart.js" async></script>
+
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 
-  <link rel="stylesheet" href="/styles/menu.css" type="text/css" />
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
 
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+  <link rel="stylesheet" href="/styles/menu.css" type="text/css" />
 
   <meta charset="UTF-8">
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Menu</title>
 </head>
 <body>
 
@@ -24,41 +25,49 @@
   </div>
 </nav>
 
+<!-- img-->
 
 <!-- Main -->
 
-<div class="container">
+<div class="container-fluid my-5">
+
   <h4>Menu</h4>
-<table>
-
   <div class="row">
-    <% for(let item in items) { %>
-      <tr>
-    <div class="col">
-
-<td><img class="card-img-top" src="<%= items[item].img%>"></td>
-<div>
-  <td><p class="card-title"><%= items[item].name%></p></td>
-  <td><p class="card-text">$<%= Number(items[item].price).toFixed(2)%></p></td>
-  <td><a href="#" data-name="<%= items[item].name%>" data-price="<%= items[item].price%>" class="add-to-cart btn btn-primary">Add to cart</a></td>
-</tr>
-</div>
-</div>
+  <% for(let item in items) { %>
+    <div class="col-md-4 d-flex justify-content-center text-center my-2">
+      <div class="row">
+          <div class="col">
+          <img class="item-img" src="<%= items[item].img%>">
+          <p class="card-title"><%= items[item].name%></p>
+          <div class="ingredients">Ingredients<span class="ing-text"><%= items[item].ingredient%></span></div>
+          <p class="card-text">$<%= Number(items[item].price).toFixed(2)%></p>
+          <a href="#" data-name="<%= items[item].name%>" data-price="<%= items[item].price%>" class="add-to-cart btn btn-primary">Add to cart</a>
+        </div>
+      </div>
     </div>
+   <!-- <div class="col-md-3"><img class="card-img-top" src="<%= items[item].img%>"></div>
+   <div class="col-md-3"><p class="card-title"><%= items[item].name%></p></div>
+   <div class="ingredients">Ingredients<span class="ing-text"><%= items[item].ingredient%></span></div>
+
+   <div class="col-md-3"><p class="card-text">$<%= Number(items[item].price).toFixed(2)%></p></div>
+   <div class="col-md-3"><a href="#" data-name="<%= items[item].name%>" data-price="<%= items[item].price%>" class="add-to-cart btn btn-primary">Add to cart</a></div> -->
+
+
+
     <% } %>
   </div>
-</table>
+
 </div>
 
 
-<!-- Modal -->
+<!-- cart popup -->
 <div class="modal fade" id="cart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 <div class="modal-dialog modal-lg" role="document">
   <div class="modal-content">
     <div class="modal-header">
       <h5 class="modal-title" id="exampleModalLabel">Cart</h5>
 
-        
+
       </button>
     </div>
     <div class="modal-body">
