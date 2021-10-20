@@ -2,16 +2,19 @@
 background-color: rgba(0, 0, 0, 0.5);
 border-radius:10px;
 position:fixed;
-top: 50px;;
+top: 150px;;
 right:0;
 z-index:1;
 }
 
 body {
-  
-
+  background: url(https://images.pexels.com/photos/1484516/pexels-photo-1484516.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
   background-size: cover;
-  margin-top: 75px;
+  background-size: cover;
+  margin-top: 150px;
 
 }
 
@@ -20,9 +23,11 @@ body {
 }
 
 .item-img {
-  width: 100px;
-  height: 100px;
+
+  width:120px;
+  height:120px;
   border-radius: 50%;
+
 
 }
 
@@ -33,13 +38,15 @@ body {
   font-size: 75%;
   box-shadow: 0 4px 16px rgb(0 0 0 / 15%);
   border-radius:15px;
+  margin-top:150px;
+
 
 
 
 }
 
 .ingredients{
-  font-size:50%;
+  font-size:75%;
 
 }
 
@@ -66,3 +73,10 @@ body {
 
 
 
+
+@media only screen and (min-width: 1024px) {
+  .container-fluid {
+    width:50vw;
+    margin-left:2%;
+  }
+}
