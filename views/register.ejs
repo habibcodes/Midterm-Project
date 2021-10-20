@@ -1,36 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <!-- from head partial -->
+  <%- include('partials/head.ejs')  %> 
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
+
+  <!-- Local CSS -->
   <link rel="stylesheet" href="/styles/register.css" type="text/css" />
+
   <title>Register</title>
 </head>
+
 <body>
-  <form method = "POST" action = "/register">
+  <form method="POST" action="/register">
     <h4>Register Menu</h4>
-    <div class = "form-content">
-
+    <div class="form-content">
+      <!-- Name Input -->
       <label for="name">Name:</label>
-  <input class ="form-control" type="text" name="name">
-  <label for = "email">Email:</label>
-  <input class = "form-control" name = "email" type = "email">
-  <label for="phone">Phone Number:</label>
-  <input class="form-control"type="tel" name="phone">
+      <input class ="form-control" type="text" name="name" required>
+      <!-- Email Input -->
+      <label for="email">Email:</label>
+      <input class="form-control" name="email" type="email" required>
+      <!-- Phone Input -->
+      <label for="phone">Phone Number:</label>
+      <input class="form-control" type="tel" name="phone" required>
+      <!-- Password Input -->
+      <label for="password">Password:</label>
+      <input class="form-control" name="password" type="password" required>
 
-  <label for = "password">Password:</label>
-  <input class = "form-control" name = "password" type = "password">
-
-  <div class="buttons-div">
-    <button class = "btn btn-primary"type = "submit">Register</button>
-    <a href = "/login">
-    <button class ="btn btn-primary"type ="button">Login</button>
-    </a>
-  </div>
-</div>
-
+      <div class="buttons-div">
+        <button class="btn btn-primary" type="submit">
+          Register        
+        </button>
+        <a href="/login">
+          <button class ="btn btn-primary" type ="button">
+            Login
+          </button>
+        </a>
+      </div>
+    </div>
   </form>
 
 
