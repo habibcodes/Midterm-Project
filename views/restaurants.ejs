@@ -3,11 +3,11 @@
 <head>
   <!-- from head partial -->
   <!-- breaks layout if included! -->
+  <%- include('./partials/head') %> 
 
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <!-- Local CSS -->
   <link rel="stylesheet" href="/styles/restaurants.css" type="text/css" />
-
   <title>Restaurants Index</title>
 
 </head>
@@ -16,30 +16,125 @@
   <!-- Nav from header partial -->
   <%-include('partials/_header') %>
 
-  <div class="restaurants-bg">
-    <h2>Restaurants</h2>
+  <div class="carouselcontainer">
+    <div id="carousel1" class="carousel slide" data-ride="carousel">
+      <ol class="carousel-indicators">
+        <li data-target="#item1" data-slide-to="0" class="active"></li>
+        <li data-target="#item2" data-slide-to="1"></li>
+        <li data-target="#item3" data-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner">
+        <div class="carousel-item active" id="item1">
+          <img src="https://images.unsplash.com/photo-1600891964092-4316c288032e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2070&q=80" class="d-block w-100" alt="...">
+          <div class="carousel-caption d-none d-md-block">
+            <a href="/menu" class="btn btn-danger">Bob's Restaurant</a>
+            <p>We serve top quality dishes <br> Rating ⭐️  ⭐️  ⭐️  ⭐️  ⭐️ </p>
+          </div>
+        </div>
+        <div class="carousel-item" id="item2">
+          <img src="https://images.unsplash.com/photo-1586816001966-79b736744398?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2070&q=80" class="d-block w-100" alt="...">
+          <div class="carousel-caption d-none d-md-block">
+            <h5>Ahmed's Review:</h5>
+            <p>Best burger in Town! Definitely coming back!</p>
+          </div>
+        </div>
+        <div class="carousel-item" id="item3">
+          <img src="https://cpb-us-e1.wpmucdn.com/blogs.uoregon.edu/dist/c/829/files/2012/10/PSD_Food_illustrations_3190_pancakes_with_butter-1wi1tz5.jpg" class="d-block w-100" alt="...">
+          <div class="carousel-caption d-none d-md-block">
+            <h5>Nickolay's Review:</h5>
+            <p>These pancakes are from Heaven.</p>
+          </div>
+        </div>
+      </div>
+      <a class="carousel-control-prev" href="#carousel1" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carousel1" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+  
+    <div id="carousel2" class="carousel slide" data-ride="carousel">
+      <ol class="carousel-indicators">
+        <li data-target="#item1" data-slide-to="0" class="active"></li>
+        <li data-target="#item2" data-slide-to="1"></li>
+        <li data-target="#item3" data-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner">
+        <div class="carousel-item active" id="item1">
+          <img src="https://www.freegreatpicture.com/files/104/15234-hd-pizza-gourmet.jpg" class="d-block w-100" alt="...">
+          <div class="carousel-caption d-none d-md-block">
+            <a href="/menu" class="btn btn-danger"> Tony's Restaurant</a>
+            <p>Bob's Restaurant is definitely better than ours! <br> Rating ⭐️  ⭐️  ⭐️ </p>
+          </div>
+        </div>
+        <div class="carousel-item" id="item2">
+          <img src="https://images.unsplash.com/photo-1589227365533-cee630bd59bd?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2070&q=80" class="d-block w-100" alt="...">
+          <div class="carousel-caption d-none d-md-block">
+            <h5>Zai's review:</h5>
+            <p>Nothing special. Just pasta. I love bob!</p>
+          </div>
+        </div>
+        <div class="carousel-item" id="item3">
+          <img src="https://images.unsplash.com/photo-1432139555190-58524dae6a55?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2076&q=80" class="d-block w-100" alt="...">
+          <div class="carousel-caption d-none d-md-block">
+            <h5>NodeJs's review: </h5>
+            <p>Food came cold! Not coming back!</p>
+          </div>
+        </div>
+      </div>
+      <a class="carousel-control-prev" href="#carousel2" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carousel2" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+  
+    <div id="carousel3" class="carousel slide" data-ride="carousel">
+      <ol class="carousel-indicators">
+        <li data-target="#item1" data-slide-to="0" class="active"></li>
+        <li data-target="#item2" data-slide-to="1"></li>
+        <li data-target="#item3" data-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner">
+        <div class="carousel-item active" id="item1">
+          <img src="https://images.unsplash.com/photo-1613514785940-daed07799d9b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80" class="d-block w-100" alt="...">
+          <div class="carousel-caption d-none d-md-block">
+            <a href="/menu" class="btn btn-danger">Mexican JavaScript</a>
+            <p>Not like Bob's <br> Rating ⭐️</p>
+          </div>
+        </div>
+        <div class="carousel-item" id="item2">
+          <img src="https://images.unsplash.com/photo-1562059390-a761a084768e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1119&q=80" class="d-block w-100" alt="...">
+          <div class="carousel-caption d-none d-md-block">
+            <h5>Penguin's review:</h5>
+            <p>Love the burritos! Coming back for more!</p>
+          </div>
+        </div>
+        <div class="carousel-item" id="item3">
+          <img src="https://images.unsplash.com/photo-1611671310207-2374ec7b1889?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1074&q=80" class="d-block w-100" alt="...">
+          <div class="carousel-caption d-none d-md-block">
+            <h5>Squirrel review:</h5>
+            <p>Enough food for a month!</p>
+          </div>
+        </div>
+      </div>
+      <a class="carousel-control-prev" href="#carousel3" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carousel3" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
   </div>
 
-  <section class="container">
-    <div>
-      <p>restaurant 1</p>
-      <a href="/menu">
-        <img class = "restaurant1" src="https://cdn.vox-cdn.com/thumbor/pDnkpiLJ3QRv_56mMHtTW4lum8E=/1400x1400/filters:format(jpeg)/cdn.vox-cdn.com/uploads/chorus_asset/file/8781901/calgary_brasserie.jpg">
-      </a>
-    </div>
-    <div>
-      <p>restaurant 2</p>
-      <a href="/menu">
-        <img class = "restaurant1" src="https://mcewangroup.ca/wp-content/uploads/2019/01/mcewan-restaurants-one-carousel-03.jpg">
-      </a>
-    </div>
-    <div>
-      <p>restaurant 3</p>
-      <a href="/menu">
-        <img class = "restaurant1" src="https://media-cdn.tripadvisor.com/media/photo-s/0d/15/a0/84/20160924-113004-largejpg.jpg">
-      </a>
-    </div>
-  </section>
 
 </body>
 </html>
