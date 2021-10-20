@@ -224,8 +224,6 @@ const orderProcessedText = () => {
         Hello, Bob! You're order for *FROM CHECKOUT* has been placed with *RESTAURANT NAME* for order no.*ORDER NUM FROM DB*. Your estimated delivery time is *SOME NUM*. You will receive a notification once your order is ready for pickup. Send 'ETA' for an update on the remaining time for your order!
       `,
       from: '+16474961279', // account num
-      // from: '+15005550006', // magic num
-      // to: '+12264000462'// sms receiver burner
       to: receiverNumber// real number
     })
     .then(message => console.log(message.sid))
@@ -240,8 +238,6 @@ const orderPlacedText = () => {
         Hello, *RESTAURANT NAME*! An order has just been placed by *CUSTOMER NAME, TELEPHONE NUMBER, ORDER #* for: *LIST OF ITEMS IN ORDER*.
       `,
       from: '+16474961279', // account num
-      // from: '+15005550006', // magic num
-      // to: '+12264000462'// sms receiver burner
       to: receiverNumber// real number
     })
     .then(message => console.log(message.sid))
@@ -255,8 +251,6 @@ const orderReadyText = () => {
         Hello, Bob! Your order is now ready for pickup! Please present *ORDER NUM* to receive your items! Enjoy your meal and thank you for useing *APP NAME*!
       `,
       from: '+16474961279', // account num
-      // from: '+15005550006', // magic num
-      // to: '+12264000462'// sms receiver burner
       to: receiverNumber// real number
     })
     .then(message => console.log(message.sid))
