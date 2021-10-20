@@ -7,7 +7,7 @@ const cookieSession = require('cookie-session');
 const $ = require('jquery');
 
 // Web server config
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 3030;
 const sassMiddleware = require("./lib/sass-middleware");
 const express = require("express");
 const app = express();
@@ -111,6 +111,7 @@ app.post("/login", (req, res) => {
       const user = result.rows[0];
       if (bcrypt.compareSync(password, user.password)) {
         req.session.user_id = user.id;
+        req.session.email = user.email;
         res.redirect("/restaurants");
       }
     } else {
@@ -148,7 +149,6 @@ app.post("/register", (req, res)=> {
     console.log(user);
     req.session.user_id = user.id;
     res.redirect("/restaurants");
-
   })
     .catch((err) => {
       console.log(err.message);
@@ -158,34 +158,36 @@ app.post("/register", (req, res)=> {
 //restaurants page
 app.get("/restaurants", (req, res) =>{
   console.log(req.session.email);
-  res.render("restaurants", { email: req.session.email})
-})
+  res.render("restaurants", { email: req.session.email});
+});
 
 
 
 app.get("/menu", (req, res)=> {
   db
-  .query('SELECT * FROM food_items ORDER BY price DESC')
-  .then((result) => {
-    const items = result.rows
-    res.render("menu", {items})
-  })
-  .catch((err)=>{
-      res.send(err.message)
+    .query('SELECT * FROM food_items ORDER BY price DESC')
+    .then((result) => {
+      const items = result.rows;
+      res.render("menu", {items, email: req.session.email});
+    })
+    .catch((err)=>{
+      res.send(err.message);
+    });
+});
 
-
-  })
-
-})
-
+//allows users to login and deletes cookie
+app.post("/logout", (req, res) => {
+  req.session = null;
+  res.redirect("/login");
+});
 
 app.post("/menu", (req, res) => {
-
+  //
 
 });
 
 // --------------------------------//
-        // Twilio Section //
+// Twilio Section //
 // --------------------------------//
 
 // Twillio SMS trigger

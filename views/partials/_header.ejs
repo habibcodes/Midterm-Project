@@ -1,25 +1,25 @@
+
 <head>
 
   <link rel="stylesheet" href="/styles/header.css" type="text/css" />
 
-  <!-- Bootstrap 4.0.0 CDN -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head> 
 
-  <!-- Google Fonts CDN -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;600&display=swap" rel="stylesheet">
-    
-
-</head>
 <header>
-  <nav class = "navbar navbar-light">
+  <nav class="navbar navbar-light">
+
     <div>
-      <a button class="btn btn-primary" href="/restaurants">Browse Restaurants</button></a>
+      <a href="/restaurants">
+        <button class="btn btn-primary">
+          Browse Restaurants
+        </button>
+      </a>
     </div>
-    <!-- <div>
+
+    <div>
       <img class="logo" style="color: black;" src="../../public/styles/assets/noun_Serving Dish_4326879.svg" alt="">
-    </div> -->
+    </div>
+    
     <div>
       <% if ( email ) { %>
         <form action="/logout" method="POST" class="form-inline">
@@ -32,6 +32,7 @@
           <a href="/register"><button type="submit" class="btn btn-primary" href="/register">Register</button></a>
       <% } %>
     </div>
-  </nav>
 
+
+  </nav>
 </header>
