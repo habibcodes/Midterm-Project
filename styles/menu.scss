@@ -1,10 +1,8 @@
 body {
   background: url(https://images.pexels.com/photos/1484516/pexels-photo-1484516.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260) no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
+  
   background-size: cover;
-  background-size: cover;
+
   margin-top: 150px;
 }
 
@@ -16,18 +14,18 @@ body {
   right:0;
   z-index:1;
   }
-  
+
   .show-cart li {
     display: flex;
   }
-  
+
   .item-img {
-  
+
     width:120px;
     height:120px;
     border-radius: 50%;
   }
-  
+
   .container-fluid {
     background-color:white;
     width: 95vw;
@@ -37,11 +35,11 @@ body {
     border-radius:15px;
     margin-top:150px;
   }
-  
+
   .ingredients{
     font-size:75%;
   }
-  
+
   .ing-text{
     visibility: hidden;
     background-color:black;
@@ -52,15 +50,15 @@ body {
     position: absolute;
     z-index: 1;
   }
-  
+
   .ingredients:hover .ing-text{
     visibility: visible;
   }
-  
+
   .add-to-cart{
     font-size:12px;
   }
-    
+
   @media only screen and (min-width: 1024px) {
     .container-fluid {
       width:50vw;
