@@ -7,7 +7,7 @@ const cookieSession = require('cookie-session');
 const $ = require('jquery');
 
 // Web server config
-const PORT = process.env.PORT || 3030;
+const PORT = process.env.PORT || 3000;
 const sassMiddleware = require("./lib/sass-middleware");
 const express = require("express");
 const app = express();
