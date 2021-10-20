@@ -1,42 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- from head partial -->
+  <!-- breaks layout if included! -->
+
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <!-- Local CSS -->
   <link rel="stylesheet" href="/styles/restaurants.css" type="text/css" />
 
+  <title>Restaurants Index</title>
 
-  <meta charset="UTF-8">
-
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>restaurants</title>
 </head>
+
 <body>
+  <!-- Nav from header partial -->
   <%-include('partials/_header') %>
+
   <div class="restaurants-bg">
     <h2>Restaurants</h2>
+  </div>
+
+  <section class="container">
+    <div>
+      <p>restaurant 1</p>
+      <a href="/menu">
+        <img class = "restaurant1" src="https://cdn.vox-cdn.com/thumbor/pDnkpiLJ3QRv_56mMHtTW4lum8E=/1400x1400/filters:format(jpeg)/cdn.vox-cdn.com/uploads/chorus_asset/file/8781901/calgary_brasserie.jpg">
+      </a>
     </div>
-<section class="container">
-  <div>
-    <p>restaurant 1</p>
-    <a href="/menu">
-    <img class = "restaurant1" src="https://cdn.vox-cdn.com/thumbor/pDnkpiLJ3QRv_56mMHtTW4lum8E=/1400x1400/filters:format(jpeg)/cdn.vox-cdn.com/uploads/chorus_asset/file/8781901/calgary_brasserie.jpg">
-    </a>
-  </div>
-  <div>
-
-    <p>restaurant 2</p>
-    <a href="/menu">
-    <img class = "restaurant1" src="https://mcewangroup.ca/wp-content/uploads/2019/01/mcewan-restaurants-one-carousel-03.jpg">
-  </div>
-</a>
-  <div>
-    <p>restaurant 3</p>
-    <a href="/menu">
-    <img class = "restaurant1" src="https://media-cdn.tripadvisor.com/media/photo-s/0d/15/a0/84/20160924-113004-largejpg.jpg">
-    </a>
-  </div>
-</section>
-
+    <div>
+      <p>restaurant 2</p>
+      <a href="/menu">
+        <img class = "restaurant1" src="https://mcewangroup.ca/wp-content/uploads/2019/01/mcewan-restaurants-one-carousel-03.jpg">
+      </a>
+    </div>
+    <div>
+      <p>restaurant 3</p>
+      <a href="/menu">
+        <img class = "restaurant1" src="https://media-cdn.tripadvisor.com/media/photo-s/0d/15/a0/84/20160924-113004-largejpg.jpg">
+      </a>
+    </div>
   </section>
+
 </body>
 </html>
