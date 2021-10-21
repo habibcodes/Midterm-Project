@@ -192,7 +192,6 @@ app.post("/menu", (req, res) => {
 
 // Twillio SMS trigger
 app.get('/confirmation', (req, res) => {
-
   const queryStr =
     `
     SELECT 
@@ -222,20 +221,6 @@ app.get('/confirmation', (req, res) => {
     .catch((err)=>{
       res.send(err.message);
     });
-
-
-  
-
-  // render confirmation page after order placed
-  // res.render('confirmation.ejs');
-  // res.send(
-  //   `
-  //   <div style="text-align:center; padding-top:25%;">
-  //   <h1> Twilio Send Test </h1>
-  //   <p> ipsum lorem </p>
-  //   </div>
-  //   `
-  // );
 });
 
 
@@ -244,7 +229,7 @@ const orderProcessedText = () => {
   client.messages
     .create({
       body: `
-        Hello, Bob! You're order for *FROM CHECKOUT* has been placed with *RESTAURANT NAME* for order no.*ORDER NUM FROM DB*. Your estimated delivery time is *SOME NUM*. You will receive a notification once your order is ready for pickup. Send 'ETA' for an update on the remaining time for your order!
+        Hello, Bob! You're order  has been placed with Bob's Restaurant for order no.0137-22/10/2022. Your estimated time is 30 minutes. You will receive a notification once your order is ready for pickup.
       `,
       from: '+16474961279', // account num
       to: receiverNumber// real number
@@ -258,7 +243,7 @@ const orderPlacedText = () => {
   client.messages
     .create({
       body: `
-        Hello, Bob's Restaurant! An order has just been placed by *Bob, at 514-213-1231, Order #0137-22/10/2022* for: *LIST OF ITEMS IN ORDER*.
+        Hello, Bob's Restaurant! An order has just been placed by: Bob, at 514-213-1231, Order #0137-22/10/2022.
       `,
       from: '+16474961279', // account num
       to: receiverNumber// real number
@@ -271,7 +256,7 @@ const orderReadyText = () => {
   client.messages
     .create({
       body: `
-        Hello, Bob! Your order is now ready for pickup! Please present *ORDER NUM* to receive your items! Enjoy your meal and thank you for useing *APP NAME*!
+        Hello, Bob! Your order is now ready for pickup! Please present Order no.0137-22/10/2022 to receive your items! Enjoy your meal and thank you for using Orderly!
       `,
       from: '+16474961279', // account num
       to: receiverNumber// real number
