@@ -1,5 +1,6 @@
 body {
-  background: url("https://images.pexels.com/photos/1484516/pexels-photo-1484516.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260")
+  
+  background: -webkit-radial-gradient(top center, ellipse cover, rgba(255,255,255,0.2) 0%,rgba(0,0,0,0.3) 0%), url("https://images.pexels.com/photos/1484516/pexels-photo-1484516.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260")
     no-repeat center center fixed;
   background-size: cover;
   margin-top: 150px;
