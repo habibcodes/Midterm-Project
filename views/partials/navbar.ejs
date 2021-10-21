@@ -1,6 +1,7 @@
+<link rel="stylesheet" href="/styles/navbar.css" type="text/css" />
 <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="#"
-    ><img src="vendor/orderly_logo.png" height="50"
+    ><img src="vendor/orderly_logo.png" height="50em"
   /></a>
   <button
     class="navbar-toggler"
@@ -22,14 +23,29 @@
         >
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/login">Login</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/register">Register</a>
-      </li>
-      <li class="nav-item">
         <a class="nav-link" href="/restaurants">Restaurants</a>
       </li>
     </ul>
+    <ul class="navbar-nav ml-auto">
+      <% if ( email ) { %>
+        <form action="/logout" method="POST" class="form-inline">
+          <li class='nav-item d-flex justify-content-end'>
+            <span style="padding-top:8px;" > Logged in as: <%= email %> &nbsp; </span>
+            <a>
+              <button style="border: rgb(248, 249, 250);background-color: rgb(248, 249, 250); "type="submit" class="nav-link" href="/login">
+              Logout
+              </button>            
+            </a>
+          </li>
+        </form>
+        <% }  else { %>
+        <li class="nav-item">
+          <a class="nav-link" href="/login">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/register">Register</a>
+        </li>
+        <% } %>
+      </ul>
   </div>
 </nav>

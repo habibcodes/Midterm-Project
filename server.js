@@ -94,7 +94,7 @@ app.get("/login", (req, res) => {
     res.redirect("/restaurants");
     return;
   }
-  res.render("login.ejs");
+  res.render("login.ejs", {email: undefined});
 });
 
 //login page -> if user is exists, then compares information with current db and redirects to main page else error.
@@ -129,7 +129,7 @@ app.get("/register", (req, res) => {
     res.redirect("/restaurants");
     return;
   }
-  res.render("register.ejs");
+  res.render("register.ejs",{email: undefined});
 });
 
 app.post("/register", (req, res)=> {
