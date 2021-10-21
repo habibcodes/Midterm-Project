@@ -135,7 +135,7 @@ function displayCart() {
       <input type='number' class='item-count form-control' data-name=' ${cartArray[item].name} ' value='  ${cartArray[item].count}'>
       =
       <td>  ${cartArray[item].total} </td>
-       </tr>
+        </tr>
   `;}
   $('.show-cart').html(output);
   $('.total-cart').html(shoppingCart.totalCart());
