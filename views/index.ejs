@@ -1,35 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-  <%- include('./partials/head') %> 
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <%- include('./partials/head') %>
+</head>
 <body>
 
-
-
-
-
-  
-  
-    <div class="background">
+  <%- include('./partials/navbar') %>
+   <div class="background">
       <div class="container">
         <div class="jumbotron">
           <h1 class="display-4">
-            Hello, world!
+            Welcome to Orderly
           </h1>
           <p class="lead">
             Waiting around for food sucks, use Orderly to place an order and we'll notify you when it's ready!
           </p>
           <hr class="my-4">
-          <p>
-            It uses utility classes for typography and spacing to space content out within the larger container.
-          </p>
+
           <form method ="POST" action = "/">
-            <a class="btn btn-primary btn-lg" href="#" role="button">
-              Feed me!
+            <a class="btn btn-warning btn-lg" href="/login" role="button">
+              Choose a Restaurant
             </a>
           </form>
         </div>
       </div>
-  
+
     </div>
 
 

@@ -127,6 +127,7 @@ $('.clear-cart').click(function() {
 function displayCart() {
   const cartArray = shoppingCart.listCart();
   let output = "";
+  console.log(cartArray)
   for (let item in cartArray) {
     output += `<tr>
       <td> ${cartArray[item].name} </td>
