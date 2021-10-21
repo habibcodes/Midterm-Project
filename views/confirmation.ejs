@@ -4,27 +4,52 @@
   <!-- from head partial -->
   <%- include('partials/head.ejs')  %> 
 
+  <!-- Local CSS -->
+  <link rel="stylesheet" href="/styles/confirmation.css" type="text/css">
+
   <title>Order Confirmation Summary</title>
 </head>
-<body>
-
-  <div class="container">
-
-    <h2>
-      Your order has been processed. 
-    </h2>
-    <p>
-      Please check your phone for updates on your order *ORDER NO*
-    </p>
-  </div>
-  
-  <div class="jumbotron">
-  <h1 class="display-4">Hello, world!</h1>
-  <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-  <hr class="my-4">
-  <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-  <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
-</div>
-
-</body>
+  <body>
+    <div class="container-md mt-5 pb-0">  
+      <div class="jumbotron">
+        <h1 class="display-4">
+          Order Processed!
+        </h1>
+        <p class="lead">
+          Your order has been processed with: 
+          <p class='h5'>
+            Bob's Restaurant
+          </p>
+        </p>
+        <p class='lead'>
+          Please check your phone for updates on your order:
+          <p class='h5'>
+            0137-22/10/2022
+          </p>
+        </p>
+        <hr class="my-4">
+        <p class="lead">
+          Your order summary is:        
+        </p>
+        <p>
+          <% for(let item in items) {%> 
+            <ul>
+              <li>
+                <img class="item-img" src="<%= items[item].img%>">
+              </li>
+              <li class="item-name">
+                <p> 1 x
+                  <%= items[item].name %>
+                </p> 
+              </li>              
+            </ul>
+          <% } %>
+          <br>
+          <p class="h4">
+            Total: $79.96
+          </p>
+        </p>
+      </div>      
+    </div>
+  </body>
 </html>

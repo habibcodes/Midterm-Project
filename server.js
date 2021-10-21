@@ -191,28 +191,51 @@ app.post("/menu", (req, res) => {
 // --------------------------------//
 
 // Twillio SMS trigger
-app.get('/twilio', (req, res) => {
-  // call Twilio Send func
+app.get('/confirmation', (req, res) => {
 
-  setTimeout(() => {
-    orderProcessedText();
-    orderPlacedText();
-  }, 5000);
-
-  setTimeout(() => {
-    orderReadyText();
-  }, 10000);
-
-
-
-  res.send(
+  const queryStr =
     `
-    <div style="text-align:center; padding-top:25%;">
-    <h1> Twilio Send Test </h1>
-    <p> ipsum lorem </p>
-    </div>
-    `
-  );
+    SELECT 
+      * 
+    FROM 
+      food_items 
+    ORDER BY 
+      price DESC
+    LIMIT
+      5
+    `;
+
+  db
+    .query(queryStr)
+    .then((result) => {
+      const items = result.rows;
+      res.render("confirmation", {items, email: req.session.email});
+      // call Twilio Send func
+      setTimeout(() => {
+        orderProcessedText();
+        orderPlacedText();
+      }, 5000);
+      setTimeout(() => {
+        orderReadyText();
+      }, 100000);
+    })
+    .catch((err)=>{
+      res.send(err.message);
+    });
+
+
+  
+
+  // render confirmation page after order placed
+  // res.render('confirmation.ejs');
+  // res.send(
+  //   `
+  //   <div style="text-align:center; padding-top:25%;">
+  //   <h1> Twilio Send Test </h1>
+  //   <p> ipsum lorem </p>
+  //   </div>
+  //   `
+  // );
 });
 
 
@@ -235,7 +258,7 @@ const orderPlacedText = () => {
   client.messages
     .create({
       body: `
-        Hello, *RESTAURANT NAME*! An order has just been placed by *CUSTOMER NAME, TELEPHONE NUMBER, ORDER #* for: *LIST OF ITEMS IN ORDER*.
+        Hello, Bob's Restaurant! An order has just been placed by *Bob, at 514-213-1231, Order #0137-22/10/2022* for: *LIST OF ITEMS IN ORDER*.
       `,
       from: '+16474961279', // account num
       to: receiverNumber// real number
