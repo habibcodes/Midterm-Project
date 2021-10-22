@@ -213,10 +213,10 @@ app.get('/confirmation', (req, res) => {
       setTimeout(() => {
         orderProcessedText();
         orderPlacedText();
-      }, 5000);
+      }, 1000);
       setTimeout(() => {
         orderReadyText();
-      }, 100000);
+      }, 10000);
     })
     .catch((err)=>{
       res.send(err.message);
